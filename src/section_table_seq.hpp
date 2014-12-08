@@ -1,0 +1,33 @@
+#ifndef _HPY_LDA_SECTION_TABLE_SEQ_HPP_
+#define _HPY_LDA_SECTION_TABLE_SEQ_HPP_
+
+#include <memory>
+#include "table_info.hpp"
+
+namespace hpy_lda {
+
+class Restaurant;
+
+class SectionTableSeq {
+ public:
+  void Reset(Restaurant& r, int w, bool consider_zero);
+  TableInfo& operator[](size_t idx) {
+    return table_seq_[idxs_[idx]];
+  }
+  const TableInfo& operator[](size_t idx) const {
+    return table_seq_[idxs_[idx]];
+  }
+  size_t size() const { return size_; }
+  
+ private:
+  void ResetIdxs();
+  
+  std::vector<TableInfo> table_seq_;
+  std::vector<size_t> idxs_;
+  size_t size_;
+};
+
+} // hpy_lda
+
+
+#endif /* _HPY_LDA_SECTION_TABLE_SEQ_HPP_ */

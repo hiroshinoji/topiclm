@@ -1,0 +1,74 @@
+#!/usr/bin/python
+
+def build(bld):
+  bld.shlib(
+    source = [
+      'hpy_lda.cpp',
+      'cached_hpy_lda.cpp',
+      'unigram_rescaling.cpp',
+      'context_tree.cpp',
+      'context_tree_manager.cpp',
+      'context_tree_analyzer.cpp',
+      'lambda_manager.cpp',
+      'restaurant_manager.cpp',
+      'parameters.cpp',
+      'dirichlet_sampler.cpp',
+      'hpy_sampler.cpp',
+      'document_manager.cpp',
+      'particle_filter_document_manager.cpp',
+      'particle_filter_sampler.cpp',
+      'restaurant.cpp',
+      'random_util.cpp',
+      'section_table_seq.cpp',
+      'child_table_selector.cpp',
+      'floor_sampler.cpp',
+      'node_util.cpp',
+      'table_based_sampler.cpp'
+      ],
+    target = 'hpy_lda',
+    name = 'HPY_LDA',
+    includes    = '.',
+    use = 'PFICOMMON')
+
+  bld.program(
+    source = 'hpy_lda_train.cpp',
+    target = 'hpy_lda_train',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    source = 'cached_hpy_lda_train.cpp',
+    target = 'cached_hpy_lda_train',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    source = 'hpy_lda_predict.cpp',
+    target = 'hpy_lda_predict',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    source = 'unigram_rescaling_train.cpp',
+    target = 'unigram_rescaling_train',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    source = 'unigram_rescaling_predict.cpp',
+    target = 'unigram_rescaling_predict',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    source = 'dirichlet_sampler_test.cpp',
+    target = 'dirichlet_sampler_test',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    source = 'analyze_model.cpp',
+    target = 'analyze_model',
+    includes = '.',
+    use = 'HPY_LDA')
+  bld.program(
+    features = 'gtest',
+    source = 'floor_sampler_test.cpp',
+    target = 'floor_sampler_test',
+    includes = '.',
+    use = 'HPY_LDA')
+
