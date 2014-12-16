@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_HISTOGRAM_TABLE_RESTAURANT_HPP_
-#define _HPY_LDA_HISTOGRAM_TABLE_RESTAURANT_HPP_
+#ifndef _TOPICLM_HISTOGRAM_TABLE_RESTAURANT_HPP_
+#define _TOPICLM_HISTOGRAM_TABLE_RESTAURANT_HPP_
 
 #include <vector>
 #include "random_util.hpp"
@@ -7,7 +7,7 @@
 #include "add_remove_result.hpp"
 #include "util.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class HistogramTableRestaurant {
  public:
@@ -211,6 +211,6 @@ class HistogramTableRestaurant {
   }
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_HISTOGRAM_TABLE_RESTAURANT_HPP_ */
+#endif /* _TOPICLM_HISTOGRAM_TABLE_RESTAURANT_HPP_ */

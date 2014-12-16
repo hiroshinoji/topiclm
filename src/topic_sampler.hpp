@@ -1,12 +1,12 @@
-#ifndef _HPY_LDA_TOPIC_SAMPLER_HPP_
-#define _HPY_LDA_TOPIC_SAMPLER_HPP_
+#ifndef _TOPICLM_TOPIC_SAMPLER_HPP_
+#define _TOPICLM_TOPIC_SAMPLER_HPP_
 
 #include <vector>
 #include <algorithm>
 #include "random_util.hpp"
 #include "parameters.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 struct SampleInfo {
   bool cache;
@@ -28,7 +28,7 @@ class TopicDepthSamplerInterface {
   
   double CalcMarginal() const {
     auto& topic_depth_pdf_ = topic_depth_pdf();
-    return std::accumulate(topic_depth_pdf_.begin(), topic_depth_pdf_.end(), 0.0);    
+    return std::accumulate(topic_depth_pdf_.begin(), topic_depth_pdf_.end(), 0.0);
   }
   virtual const std::vector<double>& topic_depth_pdf() const = 0;
 };
@@ -49,6 +49,7 @@ class TopicDepthSampler : public TopicDepthSamplerInterface {
                                   int max_depth = -1) {
     set_current_max_depth(max_depth);
     std::fill(topic_depth_pdf_.begin(), topic_depth_pdf_.end(), 0.0);
+    
     for (int j = 0; j < num_topics_ + 1; ++j) {
       topic_depth_pdf_[j] = (topic_count.second[j] + topic_parameter_.alpha[j])
           / (topic_count.first + topic_parameter_.alpha_1);
@@ -115,10 +116,12 @@ class NonGraphicalTopicDepthSampler : public TopicDepthSampler {
     set_current_max_depth(max_depth);
     std::fill(topic_depth_pdf_.begin(), topic_depth_pdf_.end(), 0.0);
     topic_depth_pdf_[0] = 1 - lambda_path[0];
+
     for (int j = 1; j < num_topics_ + 1; ++j) {
       topic_depth_pdf_[j] = (topic_count.second[j] + topic_parameter_.alpha[j])
           / (topic_count.first + topic_parameter_.alpha_1);
     }
+    
     int k = num_topics_ + 1;
     for (int i = 1; i < current_max_depth_; ++i) {
       topic_depth_pdf_[k] = 1 - lambda_path[i];
@@ -260,4 +263,4 @@ class TopicSampler {
 
 }
 
-#endif /* _HPY_LDA_TOPIC_SAMPLER_HPP_ */
+#endif /* _TOPICLM_TOPIC_SAMPLER_HPP_ */

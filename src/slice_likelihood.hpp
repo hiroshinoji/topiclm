@@ -1,11 +1,11 @@
-#ifndef _HPY_LDA_SLICE_LIKELIHOOD_HPP_
-#define _HPY_LDA_SLICE_LIKELIHOOD_HPP_
+#ifndef _TOPICLM_SLICE_LIKELIHOOD_HPP_
+#define _TOPICLM_SLICE_LIKELIHOOD_HPP_
 
 #include <vector>
 #include "node.hpp"
 #include "slice-sampler.h"
 
-namespace hpy_lda {
+namespace topiclm {
 
 struct LogDiscountPosterior {
   LogDiscountPosterior(const std::vector<std::shared_ptr<WrappedNode> >& some_depth_nodes,
@@ -245,4 +245,4 @@ struct LogLambdaPosterior {
 
 
 
-#endif /* _HPY_LDA_SLICE_LIKELIHOOD_HPP_ */
+#endif /* _TOPICLM_SLICE_LIKELIHOOD_HPP_ */

@@ -1,10 +1,10 @@
-#ifndef _HPY_LDA_MOVING_NODE_HPP_
-#define _HPY_LDA_MOVING_NODE_HPP_
+#ifndef _TOPICLM_MOVING_NODE_HPP_
+#define _TOPICLM_MOVING_NODE_HPP_
 
 #include <vector>
 #include <memory>
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 class Word;
@@ -19,6 +19,6 @@ struct MovingNode {
 };
  
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_MOVING_NODE_HPP_ */
+#endif /* _TOPICLM_MOVING_NODE_HPP_ */

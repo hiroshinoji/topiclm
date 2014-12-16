@@ -1,10 +1,10 @@
-#ifndef _HPY_LDA_SECTION_TABLE_SEQ_HPP_
-#define _HPY_LDA_SECTION_TABLE_SEQ_HPP_
+#ifndef _TOPICLM_SECTION_TABLE_SEQ_HPP_
+#define _TOPICLM_SECTION_TABLE_SEQ_HPP_
 
 #include <memory>
 #include "table_info.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Restaurant;
 
@@ -27,7 +27,7 @@ class SectionTableSeq {
   size_t size_;
 };
 
-} // hpy_lda
+} // topiclm
 
 
-#endif /* _HPY_LDA_SECTION_TABLE_SEQ_HPP_ */
+#endif /* _TOPICLM_SECTION_TABLE_SEQ_HPP_ */

@@ -1,11 +1,11 @@
-#ifndef _HPY_LDA_TABLE_BASED_SAMPLER_HPP_
-#define _HPY_LDA_TABLE_BASED_SAMPLER_HPP_
+#ifndef _TOPICLM_TABLE_BASED_SAMPLER_HPP_
+#define _TOPICLM_TABLE_BASED_SAMPLER_HPP_
 
 #include "moving_node.hpp"
 #include "select_table_state.hpp"
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class ContextTreeManager;
 class FloorSampler;
@@ -107,4 +107,4 @@ class NonGraphicalTableBasedSampler : public TableBasedSampler {
 
 };
 
-#endif /* _HPY_LDA_TABLE_BASED_SAMPLER_HPP_ */
+#endif /* _TOPICLM_TABLE_BASED_SAMPLER_HPP_ */

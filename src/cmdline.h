@@ -25,7 +25,8 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#pragma once
+#ifndef _TOPICLM_CMDLINE_HPP_
+#define _TOPICLM_CMDLINE_HPP_
 
 #include <iostream>
 #include <sstream>
@@ -801,3 +802,5 @@ private:
 };
 
 } // cmdline
+
+#endif /* _TOPICLM_CMDLINE_HPP_ */

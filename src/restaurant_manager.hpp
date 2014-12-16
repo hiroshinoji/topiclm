@@ -1,12 +1,12 @@
-#ifndef _HPY_LDA_RESTAURANT_MANAGER_HPP_
-#define _HPY_LDA_RESTAURANT_MANAGER_HPP_
+#ifndef _TOPICLM_RESTAURANT_MANAGER_HPP_
+#define _TOPICLM_RESTAURANT_MANAGER_HPP_
 
 #include <vector>
 #include "word.hpp"
 #include "add_remove_result.hpp"
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 class LambdaManagerInterface;
@@ -96,7 +96,7 @@ class NonGraphicalRestaurantManager : public RestaurantManager {
 
 };
 
-} // hpy_lda
+} // topiclm
 
 
-#endif /* _HPY_LDA_RESTAURANT_MANAGER_HPP_ */
+#endif /* _TOPICLM_RESTAURANT_MANAGER_HPP_ */

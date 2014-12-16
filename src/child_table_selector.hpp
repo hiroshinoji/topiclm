@@ -1,12 +1,12 @@
-#ifndef _HPY_LDA_CHILD_TABLE_SELECTOR_HPP_
-#define _HPY_LDA_CHILD_TABLE_SELECTOR_HPP_
+#ifndef _TOPICLM_CHILD_TABLE_SELECTOR_HPP_
+#define _TOPICLM_CHILD_TABLE_SELECTOR_HPP_
 
 #include <vector>
 #include "moving_node.hpp"
 #include "config.hpp"
 #include "select_table_state.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 
@@ -50,6 +50,6 @@ class ChildTableSelector {
   
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_CHILD_TABLE_SELECTOR_HPP_ */
+#endif /* _TOPICLM_CHILD_TABLE_SELECTOR_HPP_ */

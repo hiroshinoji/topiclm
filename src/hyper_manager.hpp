@@ -1,5 +1,5 @@
-#ifndef _HPY_LDAHYPER_MANAGER_HPP_
-#define _HPY_LDAHYPER_MANAGER_HPP_
+#ifndef _TOPICLMHYPER_MANAGER_HPP_
+#define _TOPICLMHYPER_MANAGER_HPP_
 
 class HyperManager {
  public:
@@ -8,4 +8,4 @@ class HyperManager {
   
 };
 
-#endif /* _HPY_LDAHYPER_MANAGER_HPP_ */
+#endif /* _TOPICLMHYPER_MANAGER_HPP_ */

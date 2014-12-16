@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 AddRemoveResult RestaurantFloor::AddCustomer(int type,
                                              double global_parent_probability,
@@ -119,4 +119,4 @@ void RestaurantFloor::CheckConsistency() const {
   }
 };
 
-}; // namespace hpy_lda
+}; // namespace topiclm

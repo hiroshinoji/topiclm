@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_RESTAURANT_FLOOR_H_
-#define _HPY_LDA_RESTAURANT_FLOOR_H_
+#ifndef _TOPICLM_RESTAURANT_FLOOR_H_
+#define _TOPICLM_RESTAURANT_FLOOR_H_
 
 #include <vector>
 #include <unordered_map>
@@ -9,7 +9,7 @@
 #include "add_remove_result.hpp"
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class RestaurantFloor {
  public:
@@ -104,6 +104,6 @@ class RestaurantFloor {
   }
 };
 
-} // namespace hpy_lda
+} // namespace topiclm
 
-#endif /* _HPY_LDA_RESTAURANT_FLOOR_H_ */
+#endif /* _TOPICLM_RESTAURANT_FLOOR_H_ */

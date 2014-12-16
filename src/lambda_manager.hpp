@@ -1,11 +1,11 @@
-#ifndef _HPY_LDA_LAMBDA_MANAGER_HPP_
-#define _HPY_LDA_LAMBDA_MANAGER_HPP_
+#ifndef _TOPICLM_LAMBDA_MANAGER_HPP_
+#define _TOPICLM_LAMBDA_MANAGER_HPP_
 
 #include <vector>
 #include <set>
 #include <sstream>
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 class DfsPathIterator;
@@ -154,6 +154,6 @@ class HierarchicalLambdaManager : public LambdaManagerInterface {
 };
 
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_LAMBDA_MANAGER_HPP_ */
+#endif /* _TOPICLM_LAMBDA_MANAGER_HPP_ */

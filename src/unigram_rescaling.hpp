@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_UNIGRAM_RESCALING_H_
-#define _HPY_LDA_UNIGRAM_RESCALING_H_
+#ifndef _TOPICLM_UNIGRAM_RESCALING_H_
+#define _TOPICLM_UNIGRAM_RESCALING_H_
 
 #include <vector>
 #include <memory>
@@ -10,7 +10,7 @@
 #include "particle_filter_sampler.hpp"
 #include "topic_sampler.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Parameters;
 class DocumentManager;
@@ -74,9 +74,9 @@ class UnigramRescalingSampler {
   
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_UNIGRAM_RESCALING_H_ */
+#endif /* _TOPICLM_UNIGRAM_RESCALING_H_ */
 
 
 

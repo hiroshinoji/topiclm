@@ -1,58 +1,67 @@
-#ifndef _HPY_LDA_UTIL_HPP_
-#define _HPY_LDA_UTIL_HPP_
+#ifndef _TOPICLM_UTIL_HPP_
+#define _TOPICLM_UTIL_HPP_
 
 #include <cmath>
 #include <cassert>
 #include <algorithm>
 #include <vector>
-#include <fstream>
 #include <pficommon/data/intern.h>
 #include <pficommon/data/string/utility.h>
+#include "random_util.hpp"
 #include "config.hpp"
 #include "serialization.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
-inline std::vector<std::vector<std::vector<int> > >
-ReadDocs(const std::string& file_name,
-         const std::string& unk_type,
-         pfi::data::intern<std::string>& type2ids,
-         bool train) {
-  std::ifstream ifs(file_name.c_str());
-  const int unk_id = type2ids.key2id(unk_type);
-  const int eos_id = type2ids.key2id("EOS");
-  std::vector<std::vector<std::vector<int> > > docs;
-  std::vector<std::vector<int> > doc;
-  for (std::string line; getline(ifs, line); ) {
-    line = pfi::data::string::strip(line);
-    if (line.empty()) {
-      if (!doc.empty()) {
-        docs.push_back(doc);
-      }
-      doc.clear();
-      continue;
-    }
-    auto tokens = pfi::data::string::split(line, ' ');
-    std::vector<int> token_ids;
+// inline std::vector<std::vector<std::vector<int> > >
+// ReadDocs(const std::string& file_name,
+//          const std::string& unk_type,
+//          pfi::data::intern<std::string>& type2ids,
+//          bool train) {
+//   std::ifstream ifs(file_name.c_str());
+//   const int unk_id = type2ids.key2id(unk_type);
+//   const int eos_id = type2ids.key2id(kEosKey);
+//   std::vector<std::vector<std::vector<int> > > docs;
+//   std::vector<std::vector<int> > doc;
+//   for (std::string line; getline(ifs, line); ) {
+//     line = pfi::data::string::strip(line);
+//     if (line.empty()) {
+//       if (!doc.empty()) {
+//         docs.push_back(doc);
+//       }
+//       doc.clear();
+//       continue;
+//     }
+//     auto tokens = pfi::data::string::split(line, ' ');
+//     std::vector<int> token_ids;
 
-    token_ids.push_back(eos_id);
+//     token_ids.push_back(eos_id);
 
-    for (auto& token : tokens) {
-      token = pfi::data::string::strip(token);
-      if (token.empty()) continue;
-      int token_id = type2ids.key2id(token, train);
-      if (token_id == -1) { // unknown word in test
-        token_id = unk_id;
-      }
-      token_ids.push_back(token_id);
-    }
-    token_ids.push_back(eos_id);
-    doc.push_back(token_ids);
+//     for (auto& token : tokens) {
+//       token = pfi::data::string::strip(token);
+//       if (token.empty()) continue;
+//       int token_id = type2ids.key2id(token, train);
+//       if (token_id == -1) { // unknown word in test
+//         token_id = unk_id;
+//       }
+//       token_ids.push_back(token_id);
+//     }
+//     token_ids.push_back(eos_id);
+//     doc.push_back(token_ids);
+//   }
+//   if (!doc.empty()) {
+//     docs.push_back(doc);
+//   }
+//   return docs;
+// }
+
+inline std::vector<std::string> split_strip(std::string str) {
+  auto splitted = pfi::data::string::split(str, ' ');
+  for (size_t i = 0; i < splitted.size(); ++i) {
+    splitted[i] = pfi::data::string::strip(splitted[i]);
   }
-  if (!doc.empty()) {
-    docs.push_back(doc);
-  }
-  return docs;
+  splitted.erase(std::remove(splitted.begin(), splitted.end(), ""), splitted.end());
+  return splitted;
 }
 
 template <typename Key, typename Value>
@@ -147,4 +156,4 @@ inline double digamma(double x) {
 
 };
 
-#endif /* _HPY_LDA_UTIL_HPP_ */
+#endif /* _TOPICLM_UTIL_HPP_ */

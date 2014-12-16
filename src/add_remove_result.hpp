@@ -1,7 +1,7 @@
-#ifndef _HPY_LDA_ADD_REMOVE_RESULT_H_
-#define _HPY_LDA_ADD_REMOVE_RESULT_H_
+#ifndef _TOPICLM_ADD_REMOVE_RESULT_H_
+#define _TOPICLM_ADD_REMOVE_RESULT_H_
 
-namespace hpy_lda {
+namespace topiclm {
 
 enum AddRemoveResult {
   GlobalTableChanged = 0,
@@ -11,4 +11,4 @@ enum AddRemoveResult {
   
 };
 
-#endif /* _HPY_LDA_ADD_REMOVE_RESULT_H_ */
+#endif /* _TOPICLM_ADD_REMOVE_RESULT_H_ */

@@ -1,7 +1,7 @@
 #include <string>
 #include "cmdline.h"
 #include "random_util.hpp"
-#include "hpy_lda_model.hpp"
+#include "topiclm_model.hpp"
 #include "log.hpp"
 #include "particle_filter_document_manager.hpp"
 
@@ -18,10 +18,9 @@ int main(int argc, char *argv[])
   p.parse_check(argc, argv);
 
   try {
-    hpy_lda::init_rnd();
+    topiclm::init_rnd();
     
-    auto model = hpy_lda::LoadModel<hpy_lda::UnigramRescalingSampler>(p.get<string>("model"));
-    cerr << "model load done!" << endl;
+    auto model = topiclm::LoadModel<topiclm::UnigramRescalingSampler>(p.get<string>("model"));
 
     auto& sampler = model.sampler();
     auto ct_analyzer = sampler.GetCTAnalyzer();
@@ -29,15 +28,15 @@ int main(int argc, char *argv[])
     cerr << "tree node size: " << ct_analyzer.CountNodes() << endl;
 
     auto pf_dmanager = model.GetPFDocumentManager(p.get<int>("num_particles"));
-    pf_dmanager.Read(p.get<string>("file"));
+    pf_dmanager.Read(model.reader_for_test(p.get<string>("file")));
 
     double ppl = sampler.PredictInParticleFilter(pf_dmanager,
                                                  p.get<int>("num_particles"),
                                                  p.get<int>("step"),
                                                  p.get<double>("rescaling"),
                                                  cout);
-    cerr << "PPL: " << ppl << endl;
-    cout << "PPL: " << ppl << endl;
+    cerr << "perplexity: " << ppl << endl;
+    cout << "perplexity: " << ppl << endl;
   } catch (string& what) {
     cerr << what << endl;
     return 1;

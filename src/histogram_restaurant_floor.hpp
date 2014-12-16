@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_HISTGRAM_RESTAURANT_FLOOR_H_
-#define _HPY_LDA_HISTGRAM_RESTAURANT_FLOOR_H_
+#ifndef _TOPICLM_HISTGRAM_RESTAURANT_FLOOR_H_
+#define _TOPICLM_HISTGRAM_RESTAURANT_FLOOR_H_
 
 #include <vector>
 #include <unordered_map>
@@ -10,7 +10,7 @@
 #include "add_remove_result.hpp"
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 template <typename SectionKey>
 class InternalRestaurant {
@@ -145,6 +145,6 @@ class InternalRestaurant {
   }
 };
 
-} // namespace hpy_lda
+} // namespace topiclm
 
-#endif /* _HPY_LDA_HISTGRAM_RESTAURANT_FLOOR_H_ */
+#endif /* _TOPICLM_HISTGRAM_RESTAURANT_FLOOR_H_ */

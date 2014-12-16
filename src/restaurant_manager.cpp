@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 RestaurantManager::RestaurantManager(const std::vector<Node*>& node_path,
                                      LambdaManagerInterface& lmanager,
@@ -316,4 +316,4 @@ void NonGraphicalRestaurantManager::CalcDepth2TopicPredictives(int type, int wor
   }
 }
 
-} // hpy_lda
+} // topiclm

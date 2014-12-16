@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_CONTEXT_TREE_H_
-#define _HPY_LDA_CONTEXT_TREE_H_
+#ifndef _TOPICLM_CONTEXT_TREE_H_
+#define _TOPICLM_CONTEXT_TREE_H_
 
 #include <stack>
 #include <queue>
@@ -9,7 +9,7 @@
 #include "node.hpp"
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class ChildIterator;
 class ContextTree;
@@ -60,7 +60,7 @@ class DfsPathIterator {
 
 class ContextTree {
  public:
-  ContextTree(int ngram_order_);
+  ContextTree(int ngram_order_, int eos_id);
   int WalkTree(const std::vector<int>& sent,
                 int idx,
                 int current_depth,
@@ -88,6 +88,7 @@ class ContextTree {
  private:
   std::unique_ptr<Node> root_;
   std::vector<std::set<Node*> > depth2nodes_;
+  int eos_id_;
 
   friend class pfi::data::serialization::access;
   template <typename Archive>
@@ -134,9 +135,10 @@ class ContextTree {
       }
       ar & i;
     }
+    ar & MEMBER(eos_id_);
   }
 };
 
-} // namespace hpy_lda
+} // namespace topiclm
 
-#endif /* _HPY_LDA_CONTEXT_TREE_H_ */
+#endif /* _TOPICLM_CONTEXT_TREE_H_ */

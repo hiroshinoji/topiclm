@@ -1,9 +1,9 @@
-#ifndef _HPY_LDA_DIRICHLET_SAMPLER_HPP_
-#define _HPY_LDA_DIRICHLET_SAMPLER_HPP_
+#ifndef _TOPICLM_DIRICHLET_SAMPLER_HPP_
+#define _TOPICLM_DIRICHLET_SAMPLER_HPP_
 
 #include <vector>
 
-namespace hpy_lda {
+namespace topiclm {
 
 struct DirichletParameter;
 
@@ -44,6 +44,6 @@ class NonUniformDirichletSampler : public UniformDirichletSampler {
 //       DirichletParameter& topic_parameter);
 // };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_DIRICHLET_SAMPLER_HPP_ */
+#endif /* _TOPICLM_DIRICHLET_SAMPLER_HPP_ */

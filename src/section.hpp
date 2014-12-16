@@ -1,13 +1,14 @@
-#ifndef _HPY_LDA_SECTION_H_
-#define _HPY_LDA_SECTION_H_
+#ifndef _TOPICLM_SECTION_H_
+#define _TOPICLM_SECTION_H_
 
 #include <vector>
 #include <sstream>
 #include "config.hpp"
 #include "serialization.hpp"
 #include "word.hpp"
+#include "util.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 struct BinaryHistoKey {
   bool parent_is_global;
@@ -103,4 +104,4 @@ struct HistgramSection {
 
 };
 
-#endif /* _HPY_LDA_SECTION_H_ */
+#endif /* _TOPICLM_SECTION_H_ */

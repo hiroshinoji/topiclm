@@ -1,9 +1,9 @@
-#ifndef _HPY_LDA_TABLE_INFO_HPP_
-#define _HPY_LDA_TABLE_INFO_HPP_
+#ifndef _TOPICLM_TABLE_INFO_HPP_
+#define _TOPICLM_TABLE_INFO_HPP_
 
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Word;
 
@@ -18,6 +18,6 @@ struct TableInfo {
   //     : floor(floor), customers(customers), label(label) {}
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_TABLE_INFO_HPP_ */
+#endif /* _TOPICLM_TABLE_INFO_HPP_ */

@@ -1,6 +1,6 @@
 #include "random_util.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 std::unique_ptr<RandomBase> random;
 std::unique_ptr<TemplatureManager> temp_manager;
@@ -19,5 +19,5 @@ void init_rnd() {
   random.reset(new RandomMT(rd(), *temp_manager));
 }
   
-} // namespace hpy_lda
+} // namespace topiclm
 

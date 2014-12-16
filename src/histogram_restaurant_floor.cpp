@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 vector<double> HistogramRestaurantFloor::table_probs_ = std::vector<double>();
 vector<size_t> HistogramRestaurantFloor::table_label_idxs_ = std::vector<size_t>();

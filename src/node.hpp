@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_NODE_HPP_
-#define _HPY_LDA_NODE_HPP_
+#ifndef _TOPICLM_NODE_HPP_
+#define _TOPICLM_NODE_HPP_
 
 #include <stack>
 #include <unordered_map>
@@ -9,7 +9,7 @@
 #include "serialization.hpp"
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node {
  public:
@@ -113,6 +113,6 @@ class Node {
   }
 };
 
-} // namespace hpy_lda
+} // namespace topiclm
 
-#endif /* _HPY_LDA_NODE_HPP_ */
+#endif /* _TOPICLM_NODE_HPP_ */

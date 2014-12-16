@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_INTERNAL_RESTAURANT_HPP_
-#define _HPY_LDA_INTERNAL_RESTAURANT_HPP_
+#ifndef _TOPICLM_INTERNAL_RESTAURANT_HPP_
+#define _TOPICLM_INTERNAL_RESTAURANT_HPP_
 
 #include <vector>
 #include <unordered_map>
@@ -12,7 +12,7 @@
 #include "config.hpp"
 #include "table_info.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 struct SampleTableInfo {
   topic_t label;
@@ -529,7 +529,7 @@ void InternalRestaurant<K>::SeparateWordFromSection(K type, const std::shared_pt
   EraseAndShrink(section.observeds, it);
 }
 
-} // hpy_lda
+} // topiclm
 
 
-#endif /* _HPY_LDA_INTERNAL_RESTAURANT_HPP_ */
+#endif /* _TOPICLM_INTERNAL_RESTAURANT_HPP_ */

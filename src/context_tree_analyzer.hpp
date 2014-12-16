@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_CONTEXT_TREE_ANALYZER_HPP_
-#define _HPY_LDA_CONTEXT_TREE_ANALYZER_HPP_
+#ifndef _TOPICLM_CONTEXT_TREE_ANALYZER_HPP_
+#define _TOPICLM_CONTEXT_TREE_ANALYZER_HPP_
 
 #include <vector>
 #include <string>
@@ -7,7 +7,7 @@
 #include <pficommon/data/intern.h>
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class ContextTreeManager;
 
@@ -27,21 +27,18 @@ class ContextTreeAnalyzer {
  private:
   std::vector<int> ToIdNgram(const std::vector<std::string>& ngram) const {
     std::vector<int> id_ngram;
-    int unk_id = intern_.key2id_nogen(kUnkKey);
     for (auto& type : ngram) {
       int id = intern_.key2id_nogen(type);
-      if (id == -1) {
-        id = unk_id;
-      }
       id_ngram.push_back(id);
     }
     return id_ngram;
   }
-  
+
   ContextTreeManager& ct_manager_;
   const pfi::data::intern<std::string>& intern_;
+  std::string unk_type_;  
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_CONTEXT_TREE_ANALYZER_HPP_ */
+#endif /* _TOPICLM_CONTEXT_TREE_ANALYZER_HPP_ */

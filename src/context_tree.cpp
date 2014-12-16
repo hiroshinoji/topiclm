@@ -5,7 +5,7 @@
 using namespace pfi::text::json;
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 IteratorState::IteratorState(Node* node)
     : node_(node) {
@@ -107,9 +107,9 @@ DfsPathIterator DfsPathIterator::operator++(int) {
 bool DfsPathIterator::HasMore() {
   return !iterator_state_stack_.empty();
 }
-ContextTree::ContextTree(int ngram_order_)
+ContextTree::ContextTree(int ngram_order_, int eos_id)
     : root_(new Node(-1, nullptr)),
-      depth2nodes_(ngram_order_) {
+      depth2nodes_(ngram_order_), eos_id_(eos_id) {
   depth2nodes_[0].insert(root_.get());
 }
 
@@ -127,13 +127,13 @@ int ContextTree::WalkTree(const std::vector<int>& sent,
                           int target_depth,
                           std::vector<Node*>& node_path) {
   auto current = node_path[current_depth];
-  //int next_type = GetNextType(sent, idx, current_depth);
 
-  for (; idx >= 0 && current_depth < target_depth; --idx, ++current_depth) {
-    auto child = current->child(sent[idx]);
+  for (; /*idx >= 0 &&*/ current_depth < target_depth; --idx, ++current_depth) {
+    int t = (idx >= 0) ? sent[idx] : eos_id_;
+    // int t = sent[idx];
+    auto child = current->child(t);
     if (child == nullptr) {
-      child = current->set_child(sent[idx], current);
-      //current->add_type2childtype(next_type, sent[idx]);
+      child = current->set_child(t, current);
       depth2nodes_[current_depth + 1].insert(child);
     }
     current = child;
@@ -148,8 +148,11 @@ int ContextTree::WalkTreeNoCreate(const vector<int>& sent,
                                   vector<Node*>& node_path) const {
   auto current = node_path[current_depth];
 
-  for (; idx >= 0; --idx, ++current_depth) {
-    auto child = current->child(sent[idx]);
+  for (; /*idx >= 0*/; --idx, ++current_depth) {
+    int t = (idx >= 0) ? sent[idx] : eos_id_;
+    // int t = sent[idx];
+        
+    auto child = current->child(t);
     if (child == nullptr) {
       return current_depth;
     }

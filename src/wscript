@@ -3,8 +3,7 @@
 def build(bld):
   bld.shlib(
     source = [
-      'hpy_lda.cpp',
-      'cached_hpy_lda.cpp',
+      'topiclm.cpp',
       'unigram_rescaling.cpp',
       'context_tree.cpp',
       'context_tree_manager.cpp',
@@ -25,50 +24,50 @@ def build(bld):
       'node_util.cpp',
       'table_based_sampler.cpp'
       ],
-    target = 'hpy_lda',
-    name = 'HPY_LDA',
+    target = 'topiclm',
+    name = 'TOPICLM',
     includes    = '.',
-    use = 'PFICOMMON')
+    use = 'pficommon_data pficommon_text pficommon_system')
 
   bld.program(
-    source = 'hpy_lda_train.cpp',
-    target = 'hpy_lda_train',
+    source = 'topiclm_train.cpp',
+    target = 'topiclm_train',
     includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
   bld.program(
-    source = 'cached_hpy_lda_train.cpp',
-    target = 'cached_hpy_lda_train',
+    source = 'topiclm_predict.cpp',
+    target = 'topiclm_predict',
     includes = '.',
-    use = 'HPY_LDA')
-  bld.program(
-    source = 'hpy_lda_predict.cpp',
-    target = 'hpy_lda_predict',
-    includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
   bld.program(
     source = 'unigram_rescaling_train.cpp',
     target = 'unigram_rescaling_train',
     includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
   bld.program(
     source = 'unigram_rescaling_predict.cpp',
     target = 'unigram_rescaling_predict',
     includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
   bld.program(
     source = 'dirichlet_sampler_test.cpp',
     target = 'dirichlet_sampler_test',
     includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
   bld.program(
     source = 'analyze_model.cpp',
     target = 'analyze_model',
     includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
+  bld.program(
+    source = 'shell.cpp',
+    target = 'shell',
+    includes = '.',
+    use = 'TOPICLM')
   bld.program(
     features = 'gtest',
     source = 'floor_sampler_test.cpp',
     target = 'floor_sampler_test',
     includes = '.',
-    use = 'HPY_LDA')
+    use = 'TOPICLM')
 

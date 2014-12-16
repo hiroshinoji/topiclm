@@ -3,7 +3,7 @@
 #include "context_tree.hpp"
 #include "restaurant.hpp"
 
-using namespace hpy_lda;
+using namespace topiclm;
 using namespace std;
 
 TEST(context_tree, trivial) {

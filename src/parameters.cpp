@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 double CalcLambdaCPosterior(
     const std::set<Node*>& some_depth_nodes,

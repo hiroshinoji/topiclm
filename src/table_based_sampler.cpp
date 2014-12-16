@@ -9,7 +9,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 unordered_map<int, int> CountDoc2MoveCustomers(
     const vector<pair<size_t, vector<MovingNode> > >& moving_nodes) {
@@ -249,11 +249,11 @@ void TableBasedSampler::SampleAllTablesOnce() {
       }
     }
   }
-  for (size_t i = 0; i < sample_counts.size(); ++i) {
-    LOG("floor_sample") << i << ": " << sample_counts[i] << "\n";
-  }
-  LOG("floor_sample_skip") << num_skipped_tables << " / " << num_all_tables << endl;
-  LOG("floor_sample") << endl;
+  // for (size_t i = 0; i < sample_counts.size(); ++i) {
+  //   LOG("floor_sample") << i << ": " << sample_counts[i] << "\n";
+  // }
+  // LOG("floor_sample_skip") << num_skipped_tables << " / " << num_all_tables << endl;
+  // LOG("floor_sample") << endl;
 }
 void TableBasedSampler::ResetCacheInFloorSampler() {
   floor_sampler_->ResetTopicPriorCache(parameters_.topic_parameter().alpha);
@@ -399,4 +399,4 @@ void NonGraphicalTableBasedSampler::TakeInParentPredictives(int depth, int type)
   }
 }
 
-} // hpy_lda
+} // topiclm

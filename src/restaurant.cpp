@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 vector<double> HistogramTableRestaurant::table_probs_;// = vector<double>();
 vector<int> Restaurant::tmp_c_;// = vector<int>();

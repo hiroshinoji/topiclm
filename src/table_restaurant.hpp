@@ -1,11 +1,11 @@
-#ifndef _HPY_LDA_TABLE_RESTAURANT_HPP_
-#define _HPY_LDA_TABLE_RESTAURANT_HPP_
+#ifndef _TOPICLM_TABLE_RESTAURANT_HPP_
+#define _TOPICLM_TABLE_RESTAURANT_HPP_
 
 #include <vector>
 #include "random_util.hpp"
 #include "serialization.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class TableRestaurant {
  public:
@@ -79,6 +79,6 @@ class TableRestaurant {
   }
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_TABLE_RESTAURANT_HPP_ */
+#endif /* _TOPICLM_TABLE_RESTAURANT_HPP_ */

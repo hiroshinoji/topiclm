@@ -1,10 +1,12 @@
-#ifndef _HPY_LDA_PARTICLE_FILTER_DOCUMENT_MANAGER_HPP_
-#define _HPY_LDA_PARTICLE_FILTER_DOCUMENT_MANAGER_HPP_
+#ifndef _TOPICLM_PARTICLE_FILTER_DOCUMENT_MANAGER_HPP_
+#define _TOPICLM_PARTICLE_FILTER_DOCUMENT_MANAGER_HPP_
 
 #include <pficommon/data/intern.h>
 #include "word.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
+
+class Reader;
 
 class ParticleFilterDocumentManager {
  public:
@@ -18,9 +20,10 @@ class ParticleFilterDocumentManager {
         num_particles_(num_particles),
         num_topics_(num_topics),
         ngram_order_(ngram_order) {}
+  
   ~ParticleFilterDocumentManager() {}
   
-  void Read(const std::string& fn);
+  void Read(std::shared_ptr<Reader> reader);
   void SetCurrentDoc(int current_doc_id);
   void IncrementTopicCount(int particle, int topic, bool is_general = false) {
     if (!is_general) {
@@ -35,11 +38,19 @@ class ParticleFilterDocumentManager {
     --particle2topic_count_[particle].second[topic];
   }
 
+  void StoreSentence(const std::vector<int>& sentence,
+                     const std::vector<std::vector<int> >& particle2topics,
+                     const std::vector<int>& depths,
+                     bool consider_global);
+
+  void Reset();
+
   int doc_num_words() { return particle2words_[0].size(); }
   int num_docs() const { return doc2token_seq_.size(); }
   int num_particles() const { return num_particles_; }
   int lexicon() const { return intern_.size(); }
-  const pfi::data::intern<std::string>& intern() { return intern_; }
+  pfi::data::intern<std::string>& intern() { return intern_; }
+  int current_doc_size() const { return doc2token_seq_[current_doc_id_].size(); }
   
   const std::pair<int, std::vector<int> >& topic_count(int particle) const {
     return particle2topic_count_[particle];
@@ -62,8 +73,8 @@ class ParticleFilterDocumentManager {
   }
 
  private:
-  std::vector<std::vector<std::vector<int> > > doc2token_seq_;
-  std::vector<std::vector<std::vector<int> > > particle2topic_seq_;
+  std::vector<std::vector<std::vector<int> > > doc2token_seq_; // [doc_id][sent_idx][token_idx]
+  std::vector<std::vector<std::vector<int> > > particle2topic_seq_; // [particle][sent_idx][token_idx]
   std::vector<std::pair<int, std::vector<int> > > particle2topic_count_;
 
   std::vector<std::vector<Word> > particle2words_;
@@ -75,6 +86,6 @@ class ParticleFilterDocumentManager {
   const int ngram_order_;
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_PARTICLE_FILTER_DOCUMENT_MANAGER_HPP_ */
+#endif /* _TOPICLM_PARTICLE_FILTER_DOCUMENT_MANAGER_HPP_ */

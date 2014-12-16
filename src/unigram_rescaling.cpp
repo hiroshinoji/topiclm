@@ -13,12 +13,12 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 UnigramRescalingSampler::UnigramRescalingSampler(LambdaType lambda_type, TreeType tree_type, DocumentManager& dmanager, Parameters& parameters)
     : dmanager_(dmanager),
       parameters_(parameters),
-      cmanager_(lambda_type, tree_type, parameters, dmanager.lexicon()),
+      cmanager_(lambda_type, tree_type, parameters, dmanager.lexicon(), dmanager.eos_id()),
       topic_sampler_(parameters),
       topic2word_prob_(parameters.topic_parameter().num_topics + 1),
       unigram_sum_count_(0),
@@ -215,8 +215,8 @@ void UnigramRescalingSampler::SampleLdaPart(int iteration_i) {
                             dmanager_.doc2topic2tables());
   double ppl = exp(-ll / sampling_idxs_.size());
   cerr << "[" << setw(2) << (iteration_i + 1) << "] sampling ...\t" << setw(6)
-       << sampling_idxs_.size() << "/" << sampling_idxs_.size() << "\tPPL=" << ppl << "\r";
-  LOG("info") << "[" << setw(2) << (iteration_i + 1) << "] PPL=" << ppl << endl;
+       << sampling_idxs_.size() << "/" << sampling_idxs_.size() << "\tperplexity=" << ppl << "\r";
+  LOG("info") << "[" << setw(2) << (iteration_i + 1) << "] perplexity=" << ppl << endl;
 }
 
 void UnigramRescalingSampler::SampleHpyPart(int iteration_i) {

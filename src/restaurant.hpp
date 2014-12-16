@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_RESTAURANT_HPP_
-#define _HPY_LDA_RESTAURANT_HPP_
+#ifndef _TOPICLM_RESTAURANT_HPP_
+#define _TOPICLM_RESTAURANT_HPP_
 
 #include <cassert>
 #include <map>
@@ -17,7 +17,7 @@
 #include "lambda_manager.hpp"
 #include "parameters.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 // defined below
 double ComputePYPPredictive(int cw,
@@ -390,6 +390,6 @@ inline double ComputePYPPredictive(int cw,
   }
 }
 
-} // namespace hpy_lda
+} // namespace topiclm
 
-#endif /* _HPY_LDA_RESTAURANT_HPP_ */
+#endif /* _TOPICLM_RESTAURANT_HPP_ */

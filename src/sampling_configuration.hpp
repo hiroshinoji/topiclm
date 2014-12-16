@@ -1,7 +1,7 @@
-#ifndef _HPY_LDA_SAMPLING_CONFIGURATION_HPP_
-#define _HPY_LDA_SAMPLING_CONFIGURATION_HPP_
+#ifndef _TOPICLM_SAMPLING_CONFIGURATION_HPP_
+#define _TOPICLM_SAMPLING_CONFIGURATION_HPP_
 
-namespace hpy_lda {
+namespace topiclm {
 
 struct SamplingConfiguration {
   enum UpdateMethod { kSlice = 0,
@@ -22,6 +22,6 @@ struct SamplingConfiguration {
   int iteration_num;
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_SAMPLING_CONFIGURATION_HPP_ */
+#endif /* _TOPICLM_SAMPLING_CONFIGURATION_HPP_ */

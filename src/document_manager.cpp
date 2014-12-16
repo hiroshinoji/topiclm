@@ -1,19 +1,22 @@
 #include <string>
 #include "document_manager.hpp"
-#include "util.hpp"
+#include "io_util.hpp"
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 vector<double> DocumentManager::buffer_;
 
-void DocumentManager::Read(const string& fn) {
-  string unk_type = "__unk__";
-  intern_.clear();
-  intern_.key2id("EOS");
-  intern_.key2id(unk_type);
-  doc2token_seq_ = ReadDocs(fn, "__unk__", intern_, true);
+void DocumentManager::Read(std::shared_ptr<Reader> reader) {
+  // string unk_type = "__unk__";
+  // intern_.clear();
+  // intern_.key2id(kEosKey);
+  // intern_.key2id(unk_type);
+  // doc2token_seq_ = ReadDocs(fn, "__unk__", intern_, true);
+
+  doc2token_seq_ = reader->ReadDocuments(intern_);
+  
   doc2topic_seq_ = doc2token_seq_;
   for (auto& doc : doc2topic_seq_) {
     for (auto& sent : doc) {
@@ -78,4 +81,4 @@ void DocumentManager::BuildWords() {
   }
 }
 
-} // hpy_lda
+} // topiclm

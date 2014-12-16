@@ -1,5 +1,5 @@
-#ifndef _HPY_LDADOCUMENT_MANAGER_HPP_
-#define _HPY_LDADOCUMENT_MANAGER_HPP_
+#ifndef _TOPICLMDOCUMENT_MANAGER_HPP_
+#define _TOPICLMDOCUMENT_MANAGER_HPP_
 
 #include <vector>
 #include <string>
@@ -8,9 +8,10 @@
 #include "random_util.hpp"
 #include "util.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class DirichletParameter;
+class Reader;
 
 class DocumentManager {
  public:
@@ -28,7 +29,7 @@ class DocumentManager {
       : num_topics_(num_topics), ngram_order_(ngram_order) {}
   ~DocumentManager() {}
   
-  void Read(const std::string& fn);
+  void Read(std::shared_ptr<Reader> reader);
   void OutputTopicAssign(std::ostream& os) const;
   void OutputTopicCount(std::ostream& os) const;
   
@@ -95,7 +96,11 @@ class DocumentManager {
   int num_words() const { return words_.size(); }
   int num_docs() const { return doc2token_seq_.size(); }
   int lexicon() const { return intern_.size(); }
+
+  int eos_id() { return intern_.key2id(kEosKey); }
+  
   pfi::data::intern<std::string>& intern() { return intern_; }
+  const pfi::data::intern<std::string>& intern() const { return intern_; }
   
   const std::vector<std::pair<int, std::vector<int> > >& doc2topic_count() const {
     return doc2topic_count_;
@@ -152,4 +157,4 @@ class DocumentManager {
 
 };
 
-#endif /* _HPY_LDADOCUMENT_MANAGER_HPP_ */
+#endif /* _TOPICLMDOCUMENT_MANAGER_HPP_ */

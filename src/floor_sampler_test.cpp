@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace hpy_lda;
+using namespace topiclm;
 using namespace std;
 
 double CalcArrangementProbNumerDirect(double discount,

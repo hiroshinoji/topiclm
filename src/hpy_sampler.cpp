@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 //const size_t hyper_threathold = 4;
 
@@ -268,4 +268,4 @@ double NonUniformHpySampler::SampleDiscount(
   return random->NextBeta(1 + hpy_yi_inv, 1 + hpy_zwkj_inv);
 }
 
-} // hpy_lda
+} // topiclm

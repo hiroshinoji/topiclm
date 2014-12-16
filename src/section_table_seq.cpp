@@ -1,7 +1,7 @@
 #include "section_table_seq.hpp"
 #include "restaurant.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 void SectionTableSeq::Reset(Restaurant& r, int w, bool consider_zero) {
   auto& internal = r.internal(w);
@@ -19,4 +19,4 @@ void SectionTableSeq::ResetIdxs() {
   std::random_shuffle(idxs_.begin(), idxs_.begin() + size_, *random);
 }
 
-} // hpy_lda
+} // topiclm

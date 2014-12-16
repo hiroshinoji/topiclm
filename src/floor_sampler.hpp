@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_FLOOR_SAMPLER_HPP_
-#define _HPY_LDA_FLOOR_SAMPLER_HPP_
+#ifndef _TOPICLM_FLOOR_SAMPLER_HPP_
+#define _TOPICLM_FLOOR_SAMPLER_HPP_
 
 #include <vector>
 #include <algorithm>
@@ -10,7 +10,7 @@
 #include "util.hpp"
 #include "random_util.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class CachedVector {
  public:
@@ -262,4 +262,4 @@ class FloorSampler {
 };
 
 
-#endif /* _HPY_LDA_FLOOR_SAMPLER_HPP_ */
+#endif /* _TOPICLM_FLOOR_SAMPLER_HPP_ */

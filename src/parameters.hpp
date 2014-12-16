@@ -1,5 +1,5 @@
-#ifndef _HPY_LDAPARAMETERS_HPP_
-#define _HPY_LDAPARAMETERS_HPP_
+#ifndef _TOPICLMPARAMETERS_HPP_
+#define _TOPICLMPARAMETERS_HPP_
 
 #include <vector>
 #include <string>
@@ -10,7 +10,7 @@
 #include "dirichlet_sampler.hpp"
 #include "hpy_sampler.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 
@@ -187,6 +187,6 @@ class Parameters {
   }
 };
 
-} // namespace hpy_lda
+} // namespace topiclm
 
-#endif /* _HPY_LDAPARAMETERS_HPP_ */
+#endif /* _TOPICLMPARAMETERS_HPP_ */

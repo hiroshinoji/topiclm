@@ -14,16 +14,14 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 LambdaManagerInterface* GetLambdaManager(LambdaType lambda_type, const Parameters& parameters) {
   if (lambda_type == kWood) {
-    cerr << "non hierarchical lambda set" << endl;    
     return new LambdaManager(parameters.lambda_parameter(),
                              parameters.topic_parameter().num_topics,
                              parameters.ngram_order());
   } else if (lambda_type == kHierarchical) {
-    cerr << "hierarchical lambda set" << endl;
     return new HierarchicalLambdaManager(parameters.lambda_parameter(),
                                          parameters.ngram_order());
   }
@@ -33,8 +31,9 @@ LambdaManagerInterface* GetLambdaManager(LambdaType lambda_type, const Parameter
 ContextTreeManager::ContextTreeManager(LambdaType lambda_type,
                                        TreeType tree_type,
                                        const Parameters& parameters,
-                                       int lexicon)
-    : ct_(parameters.ngram_order()),
+                                       int lexicon,
+                                       int eos_id)
+    : ct_(parameters.ngram_order(), eos_id),
       lmanager_(GetLambdaManager(lambda_type, parameters)),
       parameters_(parameters),
       lexicon_(lexicon),
@@ -47,11 +46,9 @@ ContextTreeManager::ContextTreeManager(LambdaType lambda_type,
       node_path_(parameters.ngram_order(), nullptr),
       stop_prior_path_(parameters.ngram_order()) {
   if (tree_type == kGraphical) {
-    cerr << "graphical model set" << endl;
     rmanager_.reset(
         new RestaurantManager(node_path_, *lmanager_, parameters_, zero_order_pred_));
   } else {
-    cerr << "non graphical mode set" << endl;
     rmanager_.reset(
         new NonGraphicalRestaurantManager(node_path_, *lmanager_, parameters_, zero_order_pred_));
   }
@@ -244,4 +241,4 @@ const LambdaManagerInterface& ContextTreeManager::lmanager() const {
   return *lmanager_;
 }
 
-} // hpy_lda
+} // topiclm

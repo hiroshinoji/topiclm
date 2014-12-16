@@ -2,7 +2,7 @@
 #include "random_util.hpp"
 #include "parameters.hpp"
 
-using namespace hpy_lda;
+using namespace topiclm;
 using namespace std;
 
 int main(int /*argc*/, char **/*argv*/)
@@ -16,10 +16,10 @@ int main(int /*argc*/, char **/*argv*/)
 
   vector<pair<int, vector<int> > > doc2topic_counts(num_docs);
   for (int i = 0; i < num_docs; ++i) {
-    vector<double> topic_dist = hpy_lda::random->NextDirichlet(alphas);
+    vector<double> topic_dist = topiclm::random->NextDirichlet(alphas);
     doc2topic_counts[i].second.resize(num_topics + 1);
     for (int j = 0; j < doc_len; ++j) {
-      int topic = hpy_lda::random->SampleUnnormalizedPdf(topic_dist);
+      int topic = topiclm::random->SampleUnnormalizedPdf(topic_dist);
       doc2topic_counts[i].second[topic]++;
       doc2topic_counts[i].first++;
     }

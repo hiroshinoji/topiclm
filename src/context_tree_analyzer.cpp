@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 ContextTreeAnalyzer::ContextTreeAnalyzer(ContextTreeManager& ct_manager,
                                          const pfi::data::intern<std::string>& intern)
@@ -16,10 +16,9 @@ ContextTreeAnalyzer::ContextTreeAnalyzer(ContextTreeManager& ct_manager,
 
 void ContextTreeAnalyzer::AnalyzeRestaurant(
     const vector<string>& ngram, std::ostream& os) const {
-  int unk_id = intern_.key2id_nogen(kUnkKey);
   vector<int> id_ngram = ToIdNgram(ngram);
   int type = id_ngram[id_ngram.size() - 1];
-  if (type == unk_id) {
+  if (type == -1) {
     os << "unknown type : " << type;
     return;
   }
@@ -64,10 +63,9 @@ void ContextTreeAnalyzer::AnalyzeRestaurant(
 
 void ContextTreeAnalyzer::AnalyzeTopic(const vector<string>& ngram, ostream& os) const {
   size_t num_displays = 5;
-  int unk_id = intern_.key2id_nogen(kUnkKey);
   vector<int> id_ngram = ToIdNgram(ngram);
   int type = id_ngram[id_ngram.size() - 1];
-  if (type == unk_id) {
+  if (type == -1) {
     os << "unknown word : " << type << endl;
     return;
   }

@@ -2,14 +2,14 @@
 #include <pficommon/data/string/utility.h>
 #include "cmdline.h"
 #include "random_util.hpp"
-#include "hpy_lda_model.hpp"
+#include "topiclm_model.hpp"
 #include "log.hpp"
 #include "particle_filter_document_manager.hpp"
 
 using namespace pfi::data::string;
 using namespace std;
 
-void AnalyzeRestaurant(hpy_lda::ContextTreeAnalyzer& ct_analyzer) {
+void AnalyzeRestaurant(topiclm::ContextTreeAnalyzer& ct_analyzer) {
   string query;
   for (;;) {
     putchar('>');
@@ -21,7 +21,7 @@ void AnalyzeRestaurant(hpy_lda::ContextTreeAnalyzer& ct_analyzer) {
   }
 }
 
-void AnalyzeTopic(hpy_lda::ContextTreeAnalyzer& ct_analyzer) {
+void AnalyzeTopic(topiclm::ContextTreeAnalyzer& ct_analyzer) {
   string query;
   for (;;) {
     putchar('>');
@@ -32,16 +32,16 @@ void AnalyzeTopic(hpy_lda::ContextTreeAnalyzer& ct_analyzer) {
     ct_analyzer.AnalyzeTopic(ngram, cout);
   }
 }
-void AnalyzeLambda(hpy_lda::ContextTreeAnalyzer& ct_analyzer) {
+void AnalyzeLambda(topiclm::ContextTreeAnalyzer& ct_analyzer) {
   ct_analyzer.AnalyzeLambdaToNgrams(cout);
 }
-void AnalyzeTopicalNgram(hpy_lda::ContextTreeAnalyzer& ct_analyzer, int K) {
+void AnalyzeTopicalNgram(topiclm::ContextTreeAnalyzer& ct_analyzer, int K) {
   ct_analyzer.CalcTopicalNgrams(K, cout);
 }
-void AnalyzeRelativeNgram(hpy_lda::ContextTreeAnalyzer& ct_analyzer, int K) {
+void AnalyzeRelativeNgram(topiclm::ContextTreeAnalyzer& ct_analyzer, int K) {
   ct_analyzer.CalcRelativeTopicalNgrams(K, cout);
 }
-void CheckModel(hpy_lda::ContextTreeAnalyzer& ct_analyzer) {
+void CheckModel(topiclm::ContextTreeAnalyzer& ct_analyzer) {
   ct_analyzer.CheckInternalConsistency();
 }
 
@@ -61,10 +61,9 @@ int main(int argc, char *argv[])
   p.parse_check(argc, argv);
 
   try {
-    hpy_lda::init_rnd();
+    topiclm::init_rnd();
     
-    auto model = hpy_lda::LoadModel<hpy_lda::HpyLdaSampler>(p.get<string>("model"));
-    cerr << "model load done!" << endl;
+    auto model = topiclm::LoadModel<topiclm::HpyLdaSampler>(p.get<string>("model"));
 
     auto& sampler = model.sampler();
     auto ct_analyzer = sampler.GetCTAnalyzer();

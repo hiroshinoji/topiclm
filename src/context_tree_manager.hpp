@@ -1,5 +1,5 @@
-#ifndef _HPY_LDA_CONTEXT_TREE_MANAGER_HPP_
-#define _HPY_LDA_CONTEXT_TREE_MANAGER_HPP_
+#ifndef _TOPICLM_CONTEXT_TREE_MANAGER_HPP_
+#define _TOPICLM_CONTEXT_TREE_MANAGER_HPP_
 
 #include <vector>
 #include <memory>
@@ -7,7 +7,7 @@
 #include "context_tree.hpp"
 #include "context_tree_analyzer.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class LambdaManagerInterface;
 class Node;
@@ -22,7 +22,8 @@ class ContextTreeManager {
   ContextTreeManager(LambdaType lambda_type,
                      TreeType tree_type,
                      const Parameters& parameters,
-                     int lexicon);
+                     int lexicon,
+                     int eos_id);
   virtual ~ContextTreeManager();
 
   int WalkTreeNoCreate(const std::vector<int>& sent,
@@ -91,4 +92,4 @@ class ContextTreeManager {
 
 };
 
-#endif /* _HPY_LDA_CONTEXT_TREE_MANAGER_HPP_ */
+#endif /* _TOPICLM_CONTEXT_TREE_MANAGER_HPP_ */

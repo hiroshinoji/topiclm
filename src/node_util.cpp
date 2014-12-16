@@ -1,7 +1,7 @@
 #include "node_util.hpp"
 #include "node.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 namespace util {
 
 void UpTreeFromLeaf(Node* leaf, int depth, std::vector<Node*>& node_path) {
@@ -11,4 +11,4 @@ void UpTreeFromLeaf(Node* leaf, int depth, std::vector<Node*>& node_path) {
 }
 
 } // util
-} // hpy_lda
+} // topiclm

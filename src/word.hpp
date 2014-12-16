@@ -1,9 +1,9 @@
-#ifndef _HPY_LDA_WORD_HPP_
-#define _HPY_LDA_WORD_HPP_
+#ifndef _TOPICLM_WORD_HPP_
+#define _TOPICLM_WORD_HPP_
 
 #include "config.hpp"
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 
@@ -19,6 +19,6 @@ struct Word {
   Node* node;
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_WORD_HPP_ */
+#endif /* _TOPICLM_WORD_HPP_ */

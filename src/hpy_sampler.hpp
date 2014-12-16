@@ -1,11 +1,11 @@
-#ifndef _HPY_LDA_HPY_SAMPLER_HPP_
-#define _HPY_LDA_HPY_SAMPLER_HPP_
+#ifndef _TOPICLM_HPY_SAMPLER_HPP_
+#define _TOPICLM_HPY_SAMPLER_HPP_
 
 #include <vector>
 #include <memory>
 #include <set>
 
-namespace hpy_lda {
+namespace topiclm {
 
 class Node;
 class HPYParameter;
@@ -69,6 +69,6 @@ class NonUniformHpySampler : public HpySamplerInterface {
   int num_topics_;
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_HPY_SAMPLER_HPP_ */
+#endif /* _TOPICLM_HPY_SAMPLER_HPP_ */

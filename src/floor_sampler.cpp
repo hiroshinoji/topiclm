@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 /*===================================
  *
@@ -207,4 +207,4 @@ int FloorSampler::Sample(int current) {
   return random->SampleUnnormalizedPdfRef(pdf_);
 }
 
-} // hpy_lda
+} // topiclm

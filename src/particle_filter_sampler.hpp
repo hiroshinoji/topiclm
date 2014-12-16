@@ -1,10 +1,10 @@
-#ifndef _HPY_LDA_PARTICLE_FILTER_SAMPLER_HPP_
-#define _HPY_LDA_PARTICLE_FILTER_SAMPLER_HPP_
+#ifndef _TOPICLM_PARTICLE_FILTER_SAMPLER_HPP_
+#define _TOPICLM_PARTICLE_FILTER_SAMPLER_HPP_
 
 #include <vector>
 #include <ostream>
 
-namespace hpy_lda {
+namespace topiclm {
 
 class HpyLdaSampler;
 class ParticleFilterDocumentManager;
@@ -13,10 +13,16 @@ struct Word;
 class ParticleFilterSampler {
  public:
   ParticleFilterSampler(HpyLdaSampler& hpy_lda_sampler,
-                        ParticleFilterDocumentManager& pf_dmanager);
+                        ParticleFilterDocumentManager& pf_dmanager,
+                        int step);
   ~ParticleFilterSampler();
 
-  double Run(int step, std::ostream& os);
+  double Run(std::ostream& os);
+
+  void ResampleAll();
+  void Reset();
+  
+  double log_probability(const std::vector<int>& sentence, bool store = true);
   
  private:
   void Resample(int current_idx);
@@ -26,13 +32,21 @@ class ParticleFilterSampler {
   HpyLdaSampler& hpy_lda_sampler_;
   ParticleFilterDocumentManager& pf_dmanager_;
   const int num_particles_;
+  const int step_;
   
   std::vector<std::vector<std::vector<double> > > doc_predictives_;
   std::vector<std::vector<double> > doc_stop_priors_;
   std::vector<std::vector<double> > doc_lambda_paths_;
   std::vector<int> doc_word_depths_;
+
+  // local cache for one sentence
+  std::vector<std::vector<int> > particle2sampled_topics_;
+  std::vector<int> sentence_word_depths_;
+  
+  // std::vector<std::vector<double> > sentence_predictive_;
+  
 };
 
-} // hpy_lda
+} // topiclm
 
-#endif /* _HPY_LDA_PARTICLE_FILTER_SAMPLER_HPP_ */
+#endif /* _TOPICLM_PARTICLE_FILTER_SAMPLER_HPP_ */

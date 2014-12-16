@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 LambdaManagerInterface::~LambdaManagerInterface() {}
 
@@ -252,4 +252,4 @@ double HierarchicalLambdaManager::root_lambda() const {
       / (double)(lambda_parameter_.a + lambda_parameter_.b);
 }
 
-} // hpy_lda
+} // topiclm

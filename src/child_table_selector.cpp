@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 // @TODO: It is lazy: ckeck for exceed of # of customers are a bit tired.
 //        Currently I only check the # of tables which can easily be calculated.
@@ -126,4 +126,4 @@ MovingNode ChildTableSelector::GetMovingNode(
   return mnode;
 }
 
-} // hpy_lda
+} // topiclm

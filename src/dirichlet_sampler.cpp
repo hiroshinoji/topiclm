@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace hpy_lda {
+namespace topiclm {
 
 void UniformDirichletSampler::Update(
     const vector<pair<int, vector<int> > >& doc2topic_counts,
@@ -166,4 +166,4 @@ void NonUniformDirichletSampler::UpdateBeta(
 //   topic_parameter.alpha_sum = accumulate(topic_parameter.alpha.begin(), topic_parameter.alpha.end(), 0.0);
 // }
 
-} // hpy_lda
+} // topiclm
