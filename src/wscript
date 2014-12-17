@@ -60,8 +60,8 @@ def build(bld):
     includes = '.',
     use = 'TOPICLM')
   bld.program(
-    source = 'shell.cpp',
-    target = 'shell',
+    source = 'log_probability.cpp',
+    target = 'log_probability',
     includes = '.',
     use = 'TOPICLM')
   bld.program(

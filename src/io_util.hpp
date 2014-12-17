@@ -285,6 +285,24 @@ class Reader {
     }
   }
 
+  std::vector<std::vector<int> > ReadDocumentFromFile(
+      pfi::data::intern<std::string>& dict,
+      const std::string& fn) const {
+    return ReadDocument(dict, ReadLinesFromFile(fn));
+  }
+  
+  std::vector<std::string > ReadLinesFromFile(const std::string& fn) const {
+    std::vector<std::string> doc;
+    std::ifstream ifs(fn.c_str());
+    for (std::string line; getline(ifs, line); ) {
+      line = pfi::data::string::strip(line);
+      if (!line.empty()) {
+        doc.push_back(line);
+      }
+    }
+    return doc;
+  }
+
   std::vector<std::vector<std::vector<int> > > ReadDocuments(pfi::data::intern<std::string>& dict) {
     std::vector<std::vector<std::vector<int> > > documents;
     
@@ -296,7 +314,7 @@ class Reader {
 
   std::vector<std::vector<int> > ReadDocument(
       pfi::data::intern<std::string>& dict,
-      const std::vector<std::string>& doc) {
+      const std::vector<std::string>& doc) const {
     std::vector<std::vector<int> > document;
 
     for (auto& sentence : doc) {
@@ -307,11 +325,11 @@ class Reader {
   }
 
   std::vector<int> Read(pfi::data::intern<std::string>& dict,
-                        const std::string& sentence) {
+                        const std::string& sentence) const {
     return ConvertToIDs(dict, ReadTokens(sentence));
   }
 
-  std::vector<std::string> ReadTokens(const std::string& sentence) {
+  std::vector<std::string> ReadTokens(const std::string& sentence) const {
     auto tokens = split_strip(sentence);
     
     tokens = convert(tokens);
@@ -320,9 +338,9 @@ class Reader {
   }
   
   std::vector<int> ConvertToIDs(pfi::data::intern<std::string>& dict,
-                                std::vector<std::string> tokens) {
+                                std::vector<std::string> tokens) const {
     std::vector<int> token_ids(tokens.size());
-        
+    
     for (size_t i = 0; i < tokens.size(); ++i) {
       token_ids[i] = dict.key2id(tokens[i]);
     }
@@ -331,14 +349,14 @@ class Reader {
     return token_ids;
   }
   
-  std::vector<std::string> convert(std::vector<std::string> orig) {
+  std::vector<std::string> convert(std::vector<std::string> orig) const {
     for (size_t i = 0; i < orig.size(); ++i) {
       orig[i] = convert(orig[i]);
     }
     return orig;
   }
   
-  std::string convert(std::string str) {
+  std::string convert(std::string str) const {
     for (auto& conv: converters_) {
       str = (*conv)(str);
     }
@@ -410,18 +428,15 @@ class MultiDocReader : public Reader {
   
   virtual std::vector<std::string> NextDocument() {
     if (file_lists_.empty()) ReadFileLists();
+    if (current_doc_ >= (int)file_lists_.size()) return {};
 
-    std::vector<std::string> doc;
-    std::ifstream ifs(file_lists_[current_doc_].c_str());
-    for (std::string line; getline(ifs, line); ) {
-      line = pfi::data::string::strip(line);
-      if (line.empty()) {
-        doc.push_back(line);
-      }
-    }
-    current_doc_ += 1;
-    
-    return doc;
+    auto doc = ReadLinesFromFile(file_lists_[current_doc_]);
+    current_doc_++;
+    if (doc.empty()) {
+      std::cerr << "file in " << file_lists_[current_doc_]
+                << " does not exist or empty, so skipped." << std::endl;
+      return NextDocument();
+    } else return doc;
   }
   
  private:
@@ -432,7 +447,7 @@ class MultiDocReader : public Reader {
       file_lists_.push_back(line);
     }
     Reset();
-    if (!file_lists_.empty()) throw "No file found in " + fn_;
+    if (file_lists_.empty()) throw "No file found in " + fn_;
   }
   
   std::string fn_;
